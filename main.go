@@ -52,23 +52,14 @@ func main() {
 	}
 
 	var check []string
-	cmatch := 0
-
-	for i, v := range str {
+	for _, v := range str {
 		b := regexp.MustCompile("azul|smile|latam").MatchString(strings.ToLower(v))
-		var stat int
 		if b {
-			stat = 1
-			cmatch++
-			str[i] = fmt.Sprint(stat) + ", " + v
-			check = append(check, str[i])
-		} else {
-			stat = 0
-			str[i] = fmt.Sprint(stat) + ", " + v
+			check = append(check, v)
 		}
 	}
 
-	if cmatch == 0 {
+	if len(check) == 0 {
 		write(str)
 		fmt.Println("No promotion updates, exit")
 		os.Exit(0)
