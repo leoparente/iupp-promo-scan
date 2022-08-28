@@ -91,6 +91,9 @@ func main() {
 		os.Exit(0)
 	}
 
+	env1, err1 := os.LookupEnv("SENDGRID_SENDER_EMAIL")
+	fmt.Println(env1, err1)
+
 	from := mail.NewEmail("iupp promo notify", os.Getenv("SENDGRID_SENDER_EMAIL"))
 	subject := "iupp exchange promotion!"
 	to := mail.NewEmail(os.Getenv("SENDGRID_TO_NAME"), os.Getenv("SENDGRID_TO_EMAIL"))
