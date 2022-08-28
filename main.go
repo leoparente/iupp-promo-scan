@@ -51,13 +51,13 @@ func main() {
 		fmt.Printf("%d, %v\n", stat, value)
 	}
 
-	from := mail.NewEmail("iupp promo notify", os.Getenv("SENDGRID_SENDER_EMAIL"))
-	subject := "iupp exchange promotion!"
-	to := mail.NewEmail(os.Getenv("SENDGRID_TO_NAME"), os.Getenv("SENDGRID_TO_EMAIL"))
-	plainTextContent := str[0]
-	htmlContent := str[0]
+	from := mail.NewEmail("iupp promo notify", os.Getenv("secrets.SENDGRID_SENDER_EMAIL"))
+	subject := "iupp exchange promotion"
+	to := mail.NewEmail(os.Getenv("secrets.SENDGRID_TO_NAME"), os.Getenv("secrets.SENDGRID_TO_EMAIL"))
+	plainTextContent := str[1]
+	htmlContent := str[1]
 	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
-	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
+	client := sendgrid.NewSendClient(os.Getenv("secrets.SENDGRID_API_KEY"))
 	_, err := client.Send(message)
 	if err != nil {
 		log.Println(err)
