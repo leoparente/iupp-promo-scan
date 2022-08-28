@@ -1,4 +1,4 @@
-name: Run Python Test
+name: verify iupp promotion
 on:
   push:
     branches: [ "main" ]
