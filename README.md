@@ -1,1 +1,1 @@
-# uipp_promotion_scan
+# UIPP Promotion Scan
