@@ -2,8 +2,6 @@ name: verify iupp promotion
 on:
   push:
     branches: [ "main" ]
-env:
-  SENDGRID_SENDER_EMAIL: 'ehhehehe'
 jobs:
   build:
     runs-on: ubuntu-latest
