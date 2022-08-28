@@ -51,6 +51,8 @@ func main() {
 		fmt.Printf("%d, %v\n", stat, value)
 	}
 
+	fmt.Println("EMAIL", os.Getenv("SENDGRID_SENDER_EMAIL"))
+
 	from := mail.NewEmail("iupp promo notify", os.Getenv("SENDGRID_SENDER_EMAIL"))
 	subject := "iupp exchange promotion!"
 	to := mail.NewEmail(os.Getenv("SENDGRID_TO_NAME"), os.Getenv("SENDGRID_TO_EMAIL"))
