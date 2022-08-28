@@ -3,10 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"os"
 	"regexp"
 	"strings"
 
 	"github.com/chromedp/chromedp"
+	"github.com/sendgrid/sendgrid-go"
+	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
 func main() {
@@ -45,5 +49,17 @@ func main() {
 			stat = 0
 		}
 		fmt.Printf("%d, %v\n", stat, value)
+	}
+
+	from := mail.NewEmail("iupp promo notify", os.Getenv("SENDGRID_SENDER_EMAIL"))
+	subject := "iupp exchange promotion!"
+	to := mail.NewEmail(os.Getenv("SENDGRID_TO_NAME"), os.Getenv("SENDGRID_TO_EMAIL"))
+	plainTextContent := str[0]
+	htmlContent := "<strong>and easy to do anywhere, even with Go</strong>"
+	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
+	client := sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
+	_, err := client.Send(message)
+	if err != nil {
+		log.Println(err)
 	}
 }
