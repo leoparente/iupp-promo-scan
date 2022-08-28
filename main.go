@@ -15,6 +15,8 @@ func main() {
 		chromedp.DefaultExecAllocatorOptions[3:],
 		chromedp.NoFirstRun,
 		chromedp.NoDefaultBrowserCheck,
+		chromedp.DisableGPU,
+		chromedp.Flag("remote-debugging-port", "9222"),
 	)
 	// create chromedp's context
 	parentCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
