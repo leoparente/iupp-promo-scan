@@ -12,14 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Go environment
+      - name: Setup Go env
         uses: actions/setup-go@v3.3.0
-      - name: Iupp lastest promotions verification
+      - name: iupp promo verification
         uses: GabrielBB/xvfb-action@v1
         with:
           run: go run ${{github.workspace}}/main.go
       - name: test
-        run:  |
-              echo ${SENDGRID_SENDER_EMAIL}
-              git status
+        run:  echo ${SENDGRID_SENDER_EMAIL}
+      - name: commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: update last check
              
