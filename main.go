@@ -58,9 +58,6 @@ func main() {
 			check = append(check, v)
 		}
 	}
-	
-	env1, err1 := os.LookupEnv("SENDGRID_SENDER_EMAIL")
-	fmt.Println(env1, err1)
 
 	if len(check) == 0 {
 		write(str)
