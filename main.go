@@ -26,12 +26,10 @@ func write(str []string) {
 
 func main() {
 	opts := append(
-		// select all the elements after the third element
 		chromedp.DefaultExecAllocatorOptions[3:],
 		chromedp.NoFirstRun,
 		chromedp.NoDefaultBrowserCheck,
 		chromedp.DisableGPU,
-		chromedp.Flag("remote-debugging-port", "9222"),
 	)
 	// create chromedp's context
 	parentCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
