@@ -58,6 +58,9 @@ func main() {
 			check = append(check, v)
 		}
 	}
+	
+	env1, err1 := os.LookupEnv("SENDGRID_SENDER_EMAIL")
+	fmt.Println(env1, err1)
 
 	if len(check) == 0 {
 		write(str)
@@ -90,9 +93,6 @@ func main() {
 		fmt.Println("No promotion updates, exit")
 		os.Exit(0)
 	}
-
-	env1, err1 := os.LookupEnv("SENDGRID_SENDER_EMAIL")
-	fmt.Println(env1, err1)
 
 	from := mail.NewEmail("iupp promo notify", os.Getenv("SENDGRID_SENDER_EMAIL"))
 	subject := "iupp exchange promotion!"
