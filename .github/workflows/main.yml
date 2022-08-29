@@ -4,11 +4,6 @@ on:
     branches: [ "main" ]
   schedule:
     - cron: '0 13 * * *'
-env:
-  SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-  SENDGRID_SENDER_EMAIL: ${{ secrets.SENDGRID_SENDER_EMAIL }}
-  SENDGRID_TO_EMAIL: ${{ secrets.SENDGRID_TO_EMAIL }}
-  SENDGRID_TO_NAME: ${{ secrets.SENDGRID_TO_NAME }} 
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +15,11 @@ jobs:
         uses: GabrielBB/xvfb-action@v1
         with:
           run: go run ${{github.workspace}}/main.go
-      - name: test
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          SENDGRID_SENDER_EMAIL: ${{ secrets.SENDGRID_SENDER_EMAIL }}
+          SENDGRID_TO_EMAIL: ${{ secrets.SENDGRID_TO_EMAIL }}
+          SENDGRID_TO_NAME: ${{ secrets.SENDGRID_TO_NAME }} 
         run:  echo ${#SENDGRID_SENDER_EMAIL}
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
