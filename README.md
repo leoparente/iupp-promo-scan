@@ -22,3 +22,6 @@ SENDGRID_SENDER_EMAIL
 SENDGRID_TO_EMAIL
 SENDGRID_TO_NAME
 ```
+
+#Contrib
+Feel free to open issues on this github repo.
